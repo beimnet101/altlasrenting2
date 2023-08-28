@@ -2,6 +2,8 @@
 package service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
 import model.Admin;
 import model.Role;
 import repository.AdminRepository;
@@ -9,11 +11,18 @@ import repository.AdminRepository;
 public class AdminService {
     private final AdminRepository adminRepository;
 
-    @Autowired
-    public AdminService(AdminRepository adminRepository) {
-        this.adminRepository = adminRepository;
-    }
+    private ProductService productService;
+    private RentalOwnerService rentalOwnerService;
 
+    @Autowired
+    public AdminService(AdminRepository adminRepository,ProductService productService,RentalOwnerService rentalOwnerService) {
+        this.adminRepository = adminRepository;
+
+        this.productService = productService;
+        this.rentalOwnerService = rentalOwnerService;
+    }
+    
+    
     public Admin authenticate(String username, String password) {
         Admin admin = adminRepository.findByUsernameAndPassword(username, password);
         if (admin != null) {
@@ -29,7 +38,22 @@ public class AdminService {
         return adminRepository.findByUsername(username);
     }
 
-    public Long findRoleIdByAdminId(Long adminId) {
-        return adminRepository.findRoleIdByAdminId(adminId);
+    public Long findRoleIdByAdminId(Long roleId) {
+        return adminRepository.findRoleIdByAdminId(roleId);
+        
+        
+        
     }
-}
+    
+
+ @Transactional
+        public void deleteRentalOwnerAndProducts(Long roleId) {
+        productService.deleteProductsByRentalOwnerId(roleId);
+        rentalOwnerService.deleteRentalOwner(roleId);
+        }
+
+        // Other admin-related methods
+
+    }
+    
+    

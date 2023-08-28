@@ -8,7 +8,7 @@ import java.util.Set;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long admin_id;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -71,4 +71,4 @@ public class Admin {
     // Constructors, getters, and setters
 
     // ...
-}s
+}

@@ -60,8 +60,9 @@ public class RentalOwner {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-    
+    @OneToMany(mappedBy = "rentalOwner", cascade = CascadeType.ALL)
+    private Set<Product> products = new HashSet<>();
+	
     // Constructors, getters, and setters
 
     // ...

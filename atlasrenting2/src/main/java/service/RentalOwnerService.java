@@ -21,12 +21,12 @@ public class RentalOwnerService {
   
    
   
-    public RentalOwner findByName(Long id) {
-        return rentalOwnerRepository.findById(id).orElse(null);
+    public RentalOwner findByName(Long roleId) {
+        return rentalOwnerRepository.findById(roleId).orElse(null);
     }
     
-    public RentalOwner findById(Long id) {
-        return rentalOwnerRepository.findById(id).orElse(null);
+    public RentalOwner findById(Long roleId) {
+        return rentalOwnerRepository.findById(roleId).orElse(null);
     }
    
         public RentalOwner authenticate(String username, String password) {
@@ -54,4 +54,12 @@ public class RentalOwnerService {
     public void deleteById(Long id) {
         rentalOwnerRepository.deleteById(id);
     }
+
+
+
+
+	public void deleteRentalOwner(Long roleId) {
+		// TODO Auto-generated method stub
+		
+	}
 }
