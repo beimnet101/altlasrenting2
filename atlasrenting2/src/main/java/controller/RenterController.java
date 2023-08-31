@@ -46,6 +46,7 @@ import java.util.List;
 	    public ResponseEntity<Void> deleteRenterById(@PathVariable Long id) {
 	        renterService.deleteById(id);
 	        return ResponseEntity.noContent().build();
+	          
 	    }
 	}
 

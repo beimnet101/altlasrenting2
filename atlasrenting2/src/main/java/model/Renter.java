@@ -8,9 +8,17 @@ import java.util.Set;
 public class Renter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long renterid;
 
-    @Column(nullable = false, unique = true)
+    public Long getRenterid() {
+		return renterid;
+	}
+
+	public void setRenterid(Long renterid) {
+		this.renterid = renterid;
+	}
+
+	@Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
@@ -19,8 +27,8 @@ public class Renter {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "renter_roles",
-            joinColumns = @JoinColumn(name = "renter_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
+            joinColumns = @JoinColumn(name = "renterid"),
+            inverseJoinColumns = @JoinColumn(name = "roleid")
     )
     private Set<Role> roles = new HashSet<>();
 
@@ -61,6 +69,7 @@ public class Renter {
 		return null;
 	}
 
+	
     // Constructors, getters, and setters
 
     // ...
