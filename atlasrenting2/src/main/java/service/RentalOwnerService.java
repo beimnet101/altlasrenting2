@@ -19,14 +19,12 @@ public class RentalOwnerService {
     }
 
   
-   
-  
-    public RentalOwner findByName(Long id) {
-        return rentalOwnerRepository.findById(id).orElse(null);
+    public RentalOwner findByName(Long rentalOwnerid) {
+        return rentalOwnerRepository.findById(rentalOwnerid).orElse(null);
     }
     
-    public RentalOwner findById(Long id) {
-        return rentalOwnerRepository.findById(id).orElse(null);
+    public RentalOwner findById(Long rentalOwnerid) {
+        return rentalOwnerRepository.findById(rentalOwnerid).orElse(null);
     }
    
         public RentalOwner authenticate(String username, String password) {
@@ -37,8 +35,8 @@ public class RentalOwnerService {
             return rentalOwnerRepository.findByUsername(username);
         }
 
-        public Long findRoleIdByRentalOwnerId(Long rentalOwnerId) {
-            return rentalOwnerRepository.findRoleIdByRentalOwnerId(rentalOwnerId);
+        public Long findRoleIdByRentalOwnerId(Long rentalOwnerid) {
+            return rentalOwnerRepository.findRoleIdByRentalOwnerId(rentalOwnerid);
         }
     
     
@@ -51,7 +49,26 @@ public class RentalOwnerService {
         return rentalOwnerRepository.save(rentalOwner);
     }
 
-    public void deleteById(Long id) {
-        rentalOwnerRepository.deleteById(id);
+    public void deleteById(Long rentalOwnerid) {
+        rentalOwnerRepository.deleteById(rentalOwnerid);
     }
+
+
+
+
+	public void deleteRentalOwner(Long rentalOwnerid) {
+		
+		
+	}
+
+
+
+	    public List<RentalOwner> getAllRentalowner() {
+	        return  rentalOwnerRepository.findAll();
+	    }
+
+	    public RentalOwner getRentalownerById(Long rentalOwnerid) {
+	        return  rentalOwnerRepository.findById(rentalOwnerid).orElse(null);
+	    }
+
 }

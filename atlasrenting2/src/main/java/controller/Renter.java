@@ -23,7 +23,7 @@ import jakarta.persistence.Table;
 public class Renter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long renterid;
 
     @Column(nullable = false)
     private String username;
@@ -34,8 +34,8 @@ public class Renter {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "renter_roles",
-            joinColumns = @JoinColumn(name = "renter_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
+            joinColumns = @JoinColumn(name = "renterid"),
+            inverseJoinColumns = @JoinColumn(name = "roleid")
     )
     private Set<Role> roles = new HashSet<>();
 
@@ -45,12 +45,12 @@ public class Renter {
 
     // Getters and setters
 
-    public Long getId() {
-        return id;
+    public Long getrenterId() {
+        return renterid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void renterId(Long id) {
+        this.renterid = id;
     }
 
     public String getUsername() {
@@ -68,15 +68,6 @@ public class Renter {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-    
 }
 
     // Equals and hashCode

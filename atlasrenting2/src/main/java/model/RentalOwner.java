@@ -8,9 +8,24 @@ import java.util.Set;
 public class RentalOwner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long rentalOwnerid;
 
-    @Column(nullable = false, unique = true)
+    public Long getRentalOwnerid() {
+		return rentalOwnerid;
+	}
+
+	public void setRentalOwnerid(Long rentalOwnerid) {
+		this.rentalOwnerid = rentalOwnerid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	@Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
@@ -19,7 +34,7 @@ public class RentalOwner {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "rental_owner_roles",
-            joinColumns = @JoinColumn(name = "rental_owner_id"),
+            joinColumns = @JoinColumn(name = "rentalownerid"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
@@ -60,8 +75,10 @@ public class RentalOwner {
 		// TODO Auto-generated method stub
 		return null;
 	}
+    @OneToMany(mappedBy = "rentalOwner", cascade = CascadeType.ALL)
+    private Set<Product> products = new HashSet<>();
 
-    
+
     // Constructors, getters, and setters
 
     // ...
